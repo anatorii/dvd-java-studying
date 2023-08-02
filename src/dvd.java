@@ -71,7 +71,7 @@ class MainPanel extends JPanel {
     }
 
     public void initDimensions() {
-        x = 100; y = 100;
+        x = 0; y = 0;
         dx = getWidth() / 40;
         dy = getHeight() / 40;
         directionX = 1; directionY = 1;
