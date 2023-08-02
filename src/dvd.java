@@ -86,6 +86,48 @@ class MainPanel extends JPanel {
             initDimensions();
         }
 
+        if (directionX == 1 && directionY == 1) {
+            if ((x + dx * directionX) > (getWidth() - image.getWidth())) {
+                color = getRandomColor();
+                directionX = -1;
+                directionY = 1;
+            } else if ((y + dy * directionY) > (getHeight() - image.getHeight())) {
+                color = getRandomColor();
+                directionX = 1;
+                directionY = -1;
+            }
+        } else if (directionX == -1 && directionY == 1) {
+            if (x + dx * directionX < 0) {
+                color = getRandomColor();
+                directionX = 1;
+                directionY = 1;
+            } else if ((y + dy * directionY) > (getHeight() - image.getHeight())) {
+                color = getRandomColor();
+                directionX = -1;
+                directionY = -1;
+            }
+        } else if (directionX == -1 && directionY == -1) {
+            if (x + dx * directionX < 0) {
+                color = getRandomColor();
+                directionX = 1;
+                directionY = -1;
+            } else if (y + dy * directionY < 0) {
+                color = getRandomColor();
+                directionX = -1;
+                directionY = 1;
+            }
+        } else if (directionX == 1 && directionY == -1) {
+            if ((x + dx * directionX) > (getWidth() - image.getWidth())) {
+                color = getRandomColor();
+                directionX = -1;
+                directionY = -1;
+            } else if (y + dy * directionY < 0) {
+                color = getRandomColor();
+                directionX = 1;
+                directionY = 1;
+            }
+        }
+
         x += dx * directionX; y += dy * directionY;
 
         buildPicture(g, x, y);
@@ -98,7 +140,7 @@ class MainPanel extends JPanel {
     protected void buildPicture(Graphics g, int x, int y) {
         g.setColor(color);
         g.fillRect(0, 0, getWidth(), getHeight());
-        g.setColor(Color.BLACK);
+        g.setColor(new Color(18, 18, 18));
         g.fillRect(0, 0, x, getHeight());
         g.fillRect(image.getWidth() + x, 0, getWidth(), getHeight());
         g.fillRect(0, 0, getWidth(), y);
